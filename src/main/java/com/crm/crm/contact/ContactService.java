@@ -1,5 +1,7 @@
 package com.crm.crm.contact;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,18 +11,30 @@ public class ContactService {
     @Autowired
     ContactRepository contactRepository;
 
-    public void save(Contact contact) {
-        contactRepository.save(contact);
+    public Contact save(Contact contact) {
+        return contactRepository.save(contact);
     }
 
-    public Iterable<Contact> getAllContacts() {
+    public List<Contact> getAllContacts() {
         return contactRepository.findAll();
     }
 
-    public Contact getContactById(Long id) {
-        return contactRepository.findById(id).get();
+    public Contact getContactById(String id) {
+        return contactRepository.findById(Long.valueOf(id)).get();
     }
 
+    public void deleteContactById(String id) {
+         contactRepository.deleteById(Long.valueOf(id));
+    }
 
-    
+    public Contact update(String id,Contact contact) {
+        Contact contactToUpdate = contactRepository.findById(Long.valueOf(id)).get();
+        contactToUpdate.setVia(contact.getVia());
+        contactToUpdate.setDate(contact.getDate());
+        contactToUpdate.setDescription(contact.getDescription());
+        contactRepository.save(contactToUpdate);
+        return contactToUpdate;
+        
+    }
+  
 }
