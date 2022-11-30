@@ -30,11 +30,14 @@ public class OpportunityService {
     }
 
     public Opportunity updateOpportunity(String id, Opportunity opportunity) {
-        return null;
+        Opportunity opportunityToUpdate = opportunityRepository.findById(Long.valueOf(id)).get();
+        opportunityToUpdate.setName(opportunity.getName());
+        opportunityToUpdate.setDescription(opportunity.getDescription());
+        opportunityToUpdate.setIsClient(opportunity.getIsClient());
+        opportunityToUpdate.setEmail(opportunity.getEmail());
+        opportunityToUpdate.setPhone(opportunity.getPhone());
+        opportunityRepository.save(opportunityToUpdate);
+        return opportunityToUpdate;
     }
-
-   
-
-    
-    
+  
 }

@@ -39,8 +39,4 @@ public class OpportunityTest {
         assertEquals("test", opportunityService.getOpportunityById("1").getName());
     }
 
-    
-        
-    
-    
 }
