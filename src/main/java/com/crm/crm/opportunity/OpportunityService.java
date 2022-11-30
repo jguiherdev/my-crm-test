@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class OpportunityService {
 
@@ -20,8 +21,20 @@ public class OpportunityService {
         opportunityRepository.save(opportunity);
     }
 
-    public Opportunity getOpportunityById(Long id) {
-        return opportunityRepository.findById(id).get();
+    public Opportunity getOpportunityById(String id) {
+        return opportunityRepository.findById(Long.valueOf(id)).get();
     }
+
+    public void deleteOpportunityById(String id) {
+        opportunityRepository.deleteById(Long.valueOf(id));
+    }
+
+    public Opportunity updateOpportunity(String id, Opportunity opportunity) {
+        return null;
+    }
+
+   
+
+    
     
 }
