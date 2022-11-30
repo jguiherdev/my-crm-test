@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.crm.crm.contact.Contact;
+
 @Controller
 @RequestMapping(path="/opportunities")
 public class OpportunityController {
@@ -27,7 +29,6 @@ public class OpportunityController {
         return new ResponseEntity<Opportunity>(opportunity, HttpStatus.CREATED);
     }
 
-    //get opportunity by id
     @RequestMapping(value = "/{id}")
     public ResponseEntity<Opportunity> getContactById(@PathVariable("id") String id) {
         return new ResponseEntity<Opportunity>(opportunityService.getOpportunityById(id), HttpStatus.OK);
@@ -39,10 +40,17 @@ public class OpportunityController {
         return opportunityService.getAllOpportunities();
     }
 
-    //update opportunity
     @PutMapping(path="/update/{id}")
     public ResponseEntity<Opportunity> updateOpportunity (@PathVariable("id") String id, @RequestBody Opportunity opportunity) {
         return new ResponseEntity<Opportunity>(opportunityService.updateOpportunity(id,opportunity), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/delete/{id}")
+    public ResponseEntity<Opportunity> deleteOpportunityById(@PathVariable("id") String id) {
+        opportunityService.deleteOpportunityById(id);
+        return new ResponseEntity<Opportunity>(HttpStatus.NO_CONTENT);
+    }
+
+  
     
 }
