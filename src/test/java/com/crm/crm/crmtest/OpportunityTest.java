@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -27,7 +28,15 @@ public class OpportunityTest {
     @Test
     public void updateOpportunityTest(){
         Opportunity opportunity=new Opportunity();
-        assertEquals(null, opportunityService.updateOpportunity("1", opportunity));
+        opportunity.setId(1L);
+        opportunity.setName("test");
+        opportunity.setDescription("test");
+        opportunity.setIsClient(true);
+        opportunity.setEmail(""); 
+        opportunity.setPhone("123456789");
+        Mockito.when(opportunityRepository.findById(1L)).thenReturn(java.util.Optional.of(opportunity));
+        opportunityService.updateOpportunity("1", opportunity);
+        assertEquals("test", opportunityService.getOpportunityById("1").getName());
     }
 
     

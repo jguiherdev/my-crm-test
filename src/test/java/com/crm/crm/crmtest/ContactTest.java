@@ -43,7 +43,7 @@ public class ContactTest {
     }
 
     @Test
-    public void testUpdate() {
+    public void testUpdateContact() {
 
         LocalDateTime localDateTime = LocalDateTime.now();
         
