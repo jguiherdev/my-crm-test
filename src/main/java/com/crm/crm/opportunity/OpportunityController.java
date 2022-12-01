@@ -51,6 +51,9 @@ public class OpportunityController {
         return new ResponseEntity<Opportunity>(HttpStatus.NO_CONTENT);
     }
 
-  
+    @GetMapping(path="/contacts/{id}")
+    public ResponseEntity<Iterable<Contact>> getContactsByOpportunityId(@PathVariable("id") String id) {
+        return new ResponseEntity<Iterable<Contact>>(opportunityService.getContactsByOpportunityId(id), HttpStatus.OK);
+    }
     
 }

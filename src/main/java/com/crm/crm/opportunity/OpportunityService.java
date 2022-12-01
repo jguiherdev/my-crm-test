@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.crm.crm.contact.Contact;
 
 @Service
 public class OpportunityService {
@@ -29,7 +30,7 @@ public class OpportunityService {
         opportunityRepository.deleteById(Long.valueOf(id));
     }
 
-    public Opportunity updateOpportunity(String id, Opportunity opportunity) {
+     public Opportunity updateOpportunity(String id, Opportunity opportunity) {
         Opportunity opportunityToUpdate = opportunityRepository.findById(Long.valueOf(id)).get();
         opportunityToUpdate.setName(opportunity.getName());
         opportunityToUpdate.setDescription(opportunity.getDescription());
@@ -39,6 +40,11 @@ public class OpportunityService {
         opportunityRepository.save(opportunityToUpdate);
         return opportunityToUpdate;
     }
-    
-  
+
+    public List<Contact> getContactsByOpportunityId(String id) {
+        Opportunity opportunity = opportunityRepository.findById(Long.valueOf(id)).get();
+        return opportunity.getContacts();
+    }
+
+ 
 }
