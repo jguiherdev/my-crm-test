@@ -2,6 +2,7 @@ package com.crm.crm.crmtest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,8 +75,8 @@ public class OpportunityTest {
         opportunity.setIsClient(false);
         opportunity.setEmail(""); 
         opportunity.setPhone("123456789");
+        Mockito.when(opportunityRepository.findById(1L)).thenReturn(java.util.Optional.of(opportunity));
         opportunityService.convertToClient("1");
-        assertEquals(false, opportunity.getIsClient());
-
+        assertEquals(true, opportunity.getIsClient());
     }
 }
