@@ -46,5 +46,8 @@ public class OpportunityService {
         return opportunity.getContacts();
     }
 
+    public void convertToClient(String id) {
+    }
+
  
 }

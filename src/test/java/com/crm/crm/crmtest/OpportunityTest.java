@@ -65,6 +65,17 @@ public class OpportunityTest {
         
     }
 
-    
+    @Test
+    public void convertToClient(){
+        Opportunity opportunity=new Opportunity();
+        opportunity.setId(1L);
+        opportunity.setName("test");
+        opportunity.setDescription("test");
+        opportunity.setIsClient(false);
+        opportunity.setEmail(""); 
+        opportunity.setPhone("123456789");
+        opportunityService.convertToClient("1");
+        assertEquals(false, opportunity.getIsClient());
 
+    }
 }
